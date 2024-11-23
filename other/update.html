@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件上传到 LeanCloud</title>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
+</head>
+<body>
+    <h1>上传文件到 LeanCloud</h1>
+    <form id="uploadForm">
+        <label for="file">选择文件:</label>
+        <input type="file" id="file" name="file" required>
+        <br><br>
+        <input type="submit" value="上传">
+    </form>
+
+    <script>
+        // 初始化 LeanCloud
+        AV.init({
+            appId: 'hQIDA28U5lc8xKCzV5Nu3MDQ-MdYXbMMI', // 替换为您的 App ID
+            appKey: 'HUXM6eDOJy2cZ7WQTxfk4Hk2' // 替换为您的 App Key
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交
+
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+            const avFile = new AV.File(file.name, file);
+
+            avFile.save().then(function(file) {
+                console.log('成功:', file);
+                alert('文件上传成功！文件地址: ' + file.url());
+            }).catch(function(error) {
+                console.error('错误:', error);
+                alert('文件上传失败！');
+            });
+        });
+    </script>
+</body>
+</html>
