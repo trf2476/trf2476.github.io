@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -9,6 +8,29 @@
 </head>
 <body>
     <h1>上传文件到 LeanCloud</h1>
+    
+    <!-- 添加导航菜单 -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">trf2476</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">首页</a></li>
+                <li><a href="/quanneng">全能计算器</a></li>
+                <li><a href="/mcfuwuqi">MC服务器</a></li>
+                <li><a href="https://trf2476.blog.luogu.org/">洛谷博客</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- 结束导航菜单 -->
+
     <form id="uploadForm">
         <label for="file">选择文件:</label>
         <input type="file" id="file" name="file" required>
@@ -41,47 +63,3 @@
     </script>
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文件上传到 LeanCloud</title>
-    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
-</head>
-<body>
-    <h1>上传文件到 LeanCloud</h1>
-    <form id="uploadForm">
-        <label for="file">选择文件:</label>
-        <input type="file" id="file" name="file" required>
-        <br><br>
-        <input type="submit" value="上传">
-    </form>
-
-    <script>
-        // 初始化 LeanCloud
-        AV.init({
-            appId: 'hQIDA28U5lc8xKCzV5Nu3MDQ-MdYXbMMI', // 替换为您的 App ID
-            appKey: 'HUXM6eDOJy2cZ7WQTxfk4Hk2' // 替换为您的 App Key
-        });
-
-        document.getElementById('uploadForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // 阻止表单默认提交
-
-            const fileInput = document.getElementById('file');
-            const file = fileInput.files[0];
-            const avFile = new AV.File(file.name, file);
-
-            avFile.save().then(function(file) {
-                console.log('成功:', file);
-                alert('文件上传成功！文件地址: ' + file.url());
-            }).catch(function(error) {
-                console.error('错误:', error);
-                alert('文件上传失败！');
-            });
-        });
-    </script>
-</body>
-</html>
->>>>>>> b39cf7ebe3b297c92c6367d2f346732a9e019feb
